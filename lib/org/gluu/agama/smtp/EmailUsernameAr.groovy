@@ -91,8 +91,9 @@ class EmailUsernameAr {
 """;
 
         return Map.of(
-            "subject", ":استرجاع اسم المستخدم في Phi Wallet",
+            "subject", "استرجاع اسم المستخدم في Phi Wallet",
             "body", html
         );
     }
 }
+
