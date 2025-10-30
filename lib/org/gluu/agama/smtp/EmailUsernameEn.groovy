@@ -50,7 +50,7 @@ class EmailUsernameEn {
                             <li>Phi Wallet will never contact you asking for sensitive information like your password.</li>
                         </ul>
 
-                        <p>Thanks for using Phi Wallet</p>
+                        <p>Thanks for using Phi Wallet.</p>
 
                         <p style="margin-top:30px;">Kind regards,<br>Phi Wallet Team</p>
                       </td>
@@ -101,4 +101,5 @@ class EmailUsernameEn {
         );
     }
 }
+
 
