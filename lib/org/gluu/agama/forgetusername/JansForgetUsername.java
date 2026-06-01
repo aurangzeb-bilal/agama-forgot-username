@@ -64,11 +64,21 @@ public class JansForgetUsername extends UsernameResendclass {
             return null;
         }
 
-        // Step 2: Fetch user from LDAP
+                // Step 2: Fetch user from LDAP
         User user = getUser(MAIL, email);
         if (user == null) {
             logger.warn("No local account found for email: {}", email);
             return null; // Return null so Agama 'Otherwise' block triggers
+        }
+
+        // Step 2a: Phase gate — business accounts must NOT recover a username via the
+        // personal flow. They have their own dedicated business forget-username flow.
+        // Returning null gives the same surface as "no account for this email" — no
+        // account-type leak to the caller.
+        Object orgVal = user.getAttribute("businessName", true, false);
+        if (orgVal != null && !orgVal.toString().trim().isEmpty()) {
+            logger.warn("Forgot-username rejected — business account for email: {}", email);
+            return null;
         }
 
         // Step 3: Extract attributes safely
